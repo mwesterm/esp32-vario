@@ -398,31 +398,6 @@ void setup() {
 	Wire.begin(pinSDA, pinSCL);
 	Wire.setClock(400000); // set clock frequency AFTER Wire.begin()
 
-
-						   // Test each I2C address 
-	for (int i = 0; i<256; i++)
-	{
-		// Request data (read one byte)
-		Wire.requestFrom(i, 1);
-
-		// If slave answers, a device is found
-		if (Wire.available())
-		{
-			// Display address
-			Serial.print(i, DEC);
-			Serial.print("\t0x");
-			Serial.print(i, HEX);
-			Serial.print("\t");
-			Serial.print("0b");
-			Serial.print(i, BIN);
-			Serial.print("\t");
-			Serial.println("Device found");
-		}
-
-		//    delay(100);
-	}
-	Serial.println("End of scan");
-
 	ledcAttachPin(pinAudio, audiochannel);
 	ledcSetup(audiochannel, 4000, 14);
 
